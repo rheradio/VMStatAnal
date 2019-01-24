@@ -1,0 +1,20 @@
+=============================================================================
+SUPPORTING THE STATISTICAL ANALYSIS OF VARIABILITY MODELS
+=============================================================================
+R. Heradio, David Fernandez-Amoros, Christoph Mayr-Dorn, and Alexander Egyed.
+In 41st ACM/IEEE International Conference on Software Engineering (ICSE), 
+Montréal, QC, Canada, 2019.
+=============================================================================
+
+We apply for the REUSABLE and AVAILABLE badges.
+
+The following points summarize the reasons we believe the artifact deserves both badges:
+
+* First, the artifact is FUNCTIONAL: documented, consistent, complete, exercisable, and include appropriate evidence of verification and validation.
+
+* It is well-structured to the extent that reuse and repurposing are facilitated. As described in the file README.txt, there are separated directories for (i) the source code, (ii) the binary code, (iii) the benchmark for our algorithms experimental validation, and (iv) the experimental results.
+
+* It is placed on the following public repository:
+  https://github.com/rheradio/VMStatAnal
+  
+  Our Unique Paper ID is ICSE-Main-95 

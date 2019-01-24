@@ -1,0 +1,103 @@
+=============================================================================
+SUPPORTING THE STATISTICAL ANALYSIS OF VARIABILITY MODELS
+=============================================================================
+R. Heradio, David Fernandez-Amoros, Christoph Mayr-Dorn, and Alexander Egyed.
+In 41st ACM/IEEE International Conference on Software Engineering (ICSE), 
+Montréal, QC, Canada, 2019.
+=============================================================================
+
+We provide two programs: probability and histogram, which implement the Feature 
+Inclusion Probability (FIP) and Product Distribution (PD) algorithms described 
+in the paper.
+
+Both programs have been tested in macOS and Linux.
+
+=============================================================================
+- INSTALLING PRECOMPILED BINARIES ------------------------------------------- 
+=============================================================================
+
+Run the install.sh script for your platform of choice in the corresponding 
+directory: installer/linux for linux or installer/macOS for macOS. There is an 
+uninstaller.sh script as well.
+
+For macOS you may need to install Xcode to get the libc++ library. If all else 
+fails, you can always build from source.
+
+The linux binaries are statically compiled, so they should just work. Anyway, 
+compiling instructions are provided below.
+
+=============================================================================
+- COMPILING FROM SOURCE ----------------------------------------------------- 
+=============================================================================
+
+1) Install first the buildinging tools:
+  
+  1.1) Linux: install the building tools by typing in the terminal:
+   
+       sudo apt install build-essential 
+  
+  1.2) macOS: install Xcode to get the building tools.
+
+2) Both applications depend on CUDD and GMP (GNU Multiple Precision Arithmetic 
+Library). 
+  
+  2.1) Linux: GMP can be installed in linux by typing in the terminal: 
+   
+       sudo apt install libgmp3-dev
+       
+       The source code for CUDD is included in the source/cudd-release 
+       directory. To compile and install it, support for the C++ interface and 
+       the dddmp file format is necessary. To compile in Linux, cd to the the 
+       cudd-releases directory and please type:
+
+       ./configure CFLAGS="-g -O2" CXXFLAGS="-O2 -std=c++11  -g" --enable-shared --enable-obj --enable-dddmp
+       make
+       sudo make install
+  
+   2.2) macOs: GMP can be compiled with the mac ports application 
+        (www.macports.org) typing:
+
+        sudo port install gmp
+
+        It is also possible to compile it from source by typing:
+
+        ./configure CFLAGS="-g -O2" CC=clang CXX=clang++ CXXFLAGS="-O2 -std=c++11 -stdlib=libc++ -g" --enable-shared --enable-obj --enable-dddmp
+        make
+        sudo make install
+
+3) To compile our programs probability and histogram
+
+  3.1) Linux: in the source/paper-src directory type
+
+       make -f Makefile.linux
+       sudo cp probability histogram /usr/local/bin
+
+  3.2) macOS: please type
+
+       make -f Makefile.macOS
+       sudo cp probability histogram /usr/local/bin
+
+=============================================================================
+- TESTING THE PROGRAMS ----------------------------------------------------- 
+=============================================================================
+
+Now you can test if the programs work. You may cd to the results/axtls directory 
+and type:
+
+probability axtls >test.probability
+
+This should read the axtls.dddmp file, compute the probabilities for every 
+feature in the variability model axtls and write them to file called 
+axtls.probability. Likewise, you could type:
+
+histogram axtls >test.histogram
+
+to get the distribution of software products, or histogram of the axtls 
+variability model. You may compare these files with axtls.probability and 
+axtls.histogram to see if they differ:
+
+diff test.probability axtls.probability
+diff test.histogram axtls.histogram
+
+If nothing shows up, it means that both programs work correctly. 
+Both programs rely on the BDD file being called something.dddmp. 
