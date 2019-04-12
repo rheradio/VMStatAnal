@@ -3,7 +3,7 @@ SUPPORTING THE STATISTICAL ANALYSIS OF VARIABILITY MODELS
 =============================================================================
 R. Heradio, David Fernandez-Amoros, Christoph Mayr-Dorn, and Alexander Egyed.
 In 41st ACM/IEEE International Conference on Software Engineering (ICSE), 
-Montréal, QC, Canada, 2019.
+MontrÃ©al, QC, Canada, 2019.
 =============================================================================
 
 =============================================================================
@@ -32,12 +32,12 @@ This artifact is structured in the following directories:
      3.1.4) Busybox 1.23.2 (https://busybox.net/)
      3.1.5) EmbToolkit 1.7.0 (https://www.embtoolkit.org/)
    3.2) The SPLOT feature modelling language for:
-     3.2.1) Dell laptops (A. Nöhrer and A. Egyed, C2O configurator: a tool for 
+     3.2.1) Dell laptops (A. NÃ¶hrer and A. Egyed, C2O configurator: a tool for 
             guided decision-making, Automated Software Engineering, vol. 20, 
-            no. 2, pp. 265–296, 2013).
-     3.2.3) Automotive 02 (S. Krieter, T. Thüm, S. Schulze, R. Schröter, and 
+            no. 2, pp. 265â€“296, 2013).
+     3.2.3) Automotive 02 (S. Krieter, T. ThÃ¼m, S. Schulze, R. SchrÃ¶ter, and 
             G. Saake, Propagating configuration decisions with modal implication 
-            graphs, ICSE'18, New York, NY, USA, 2018, pp. 898–909).
+            graphs, ICSE'18, New York, NY, USA, 2018, pp. 898â€“909).
      
 4) results: contains a subdirectory for each variability model tested. In each 
    of these subdirectories, you may find the following files:
@@ -62,7 +62,7 @@ This artifact is structured in the following directories:
         running times purposes).
 
 =============================================================================
-- How to use artifact? ------------------------------------------------------ 
+- How to use the artifact? -------------------------------------------------- 
 =============================================================================
 
 The usage is extremely simple: Just type the name of the tool (probability or
