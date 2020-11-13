@@ -1,0 +1,6 @@
+-bash: export: `../../Logic2BDD': not a valid identifier
+-bash: export: `-constraint-reorder': not a valid identifier
+-bash: export: `-noreorder': not a valid identifier
+-bash: export: `-cudd': not a valid identifier
+-bash: export: `.good.var': not a valid identifier
+-bash: export: `.exp': not a valid identifier

@@ -1,0 +1,2 @@
+../../Logic2BDD -constraint-reorder minspan -min-nodes 100000 -cudd .original.var .exp 
+Could not open file: .exp

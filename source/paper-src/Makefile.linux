@@ -1,0 +1,37 @@
+probabilityOBJ=probability.o cuddAdapter.o cuddAlgo.o TravInfo.o 
+
+histogramOBJ=histogram.o cuddAdapter.o cuddAlgo.o TravInfo.o
+
+LDFLAGS=-lpthread -lgmpxx -lgmp -lcudd -L/usr/local/lib -L/opt/local/lib 
+INCLUDEFLAGS=-I../cudd-release/ -I../cudd-release/cudd/  -I../cudd-release/util -I../cudd-release/epd -I../cudd-release/mtr -I../cudd-release/st -I../cudd-release/cplusplus -I/usr/local/include -I/opt/local/include
+CXXFLAGS+=-std=c++11 -O2
+CC=c++
+
+all:probability histogram 
+clean: 
+	-@rm probability histogram *.o 2>/dev/null
+
+probability: ${probabilityOBJ}
+	$(CC) $(CXXFLAGS) -o probability $(probabilityOBJ) $(INCLUDEFLAGS)  $(LDFLAGS)
+
+histogram: ${histogramOBJ}
+	$(CC) $(CXXFLAGS) -o histogram $(histogramOBJ) $(INCLUDEFLAGS)  $(LDFLAGS)
+
+histogram.o: histogram.cpp Traverser.hpp
+	$(CC) -c $(CXXFLAGS) $(INCLUDEFLAGS) -o histogram.o  histogram.cpp
+
+probability.o: probability.cpp Traverser.hpp
+	$(CC) -c $(CXXFLAGS) $(INCLUDEFLAGS) -o probability.o probability.cpp
+
+TravInfo.o: TravInfo.cpp TravInfo.hpp
+	$(CC) -c $(CXXFLAGS) $(INCLUDEFLAGS) -o TravInfo.o TravInfo.cpp
+
+cuddAdapter.o: cuddAdapter.cpp cuddAdapter.hpp
+	$(CC) -c $(CXXFLAGS) $(INCLUDEFLAGS) -o cuddAdapter.o cuddAdapter.cpp
+
+cuddAlgo.o: cuddAlgo.cpp cuddAlgo.hpp
+	$(CC) -c $(CXXFLAGS) $(INCLUDEFLAGS) -o cuddAlgo.o cuddAlgo.cpp
+
+Traverser.o: Traverser.cpp Traverser.hpp
+	$(CC) -c $(CXXFLAGS) $(INCLUDEFLAGS) -o Traverser.o Traverser.cpp
+
