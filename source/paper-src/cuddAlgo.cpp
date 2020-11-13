@@ -120,21 +120,6 @@ void makeCombinations(int n) {
         lastRow = current;
     }
 }
-//void makeCombinations(int n) {
-//    mpz_class factor   = 1;
-//    int multiply       = n;
-//    int divide         = 1;
-//    int half           = n/2;
-//    for(int x = 0; x <= half; x++){
-//        combMap[n].push_back(factor);
-//        factor = (factor*multiply--)/divide++;
-//    }
-//    if (n % 2 == 0) half--;
-//    for(int x = half;  x >= 0; x--) {
-//        combMap[n].push_back(combMap[n][x]);
-//    }
-//}
-
 // We return the biggest jump.
 int  _compLevelJump(int plevel, int tlevel, int elevel,
                                      const int& tr,
@@ -301,7 +286,7 @@ ucr _upProducts(int plevel, int tlevel, int elevel, const ucr& tr, const ucr& er
 
 
 std::vector<mpf_class> computeCommonality(cuddAdapter *a) {
-    std::vector<mpf_class> res;
+    std::vector<mpf_class> res(a->getNumVars());
     ucr rZero, rOne, recRes;
     rZero.counter = 0;
     rOne.counter  = 1;
@@ -313,15 +298,16 @@ std::vector<mpf_class> computeCommonality(cuddAdapter *a) {
     totalNodes = a->nodecount();
     divider    = totalNodes/100;
     recRes = traverse(a, rZero, rOne, _upProducts);
+    std::vector<int> p2v = a->pos2var();
     // Last component would be commonality of 1 so we do not include it
-    for(int i = 0; i < recRes.products.size()-1; i++) {
-        res.push_back((mpf_class) recRes.products[i] /recRes.counter);
-}
+    for(int i = 0; i < recRes.products.size()-1; i++) 
+        res[p2v[i]] = ((mpf_class) recRes.products[i] /recRes.counter);
+
     return res;
 }
 
 std::vector<mpf_class> computeCommonalityMP(int num, cuddAdapter *a, bool fast) {
-    std::vector<mpf_class> res;
+    std::vector<mpf_class> res(a->getNumVars());
     ucr rZero, rOne, recRes;
     rZero.counter = 0;
     rOne.counter  = 1;
@@ -333,10 +319,11 @@ std::vector<mpf_class> computeCommonalityMP(int num, cuddAdapter *a, bool fast) 
     totalNodes = a->nodecount();
     divider    = totalNodes/100;
     recRes = traverseMP(num, a, rZero, rOne, _upProducts, fast);
+    std::vector<int> p2v = a->pos2var();
     // Last component would be commonality of 1 so we do not include it
-    for(int i = 0; i < recRes.products.size()-1; i++)
-        res.push_back((mpf_class) recRes.products[i] /recRes.counter);
-    
+    for(int i = 0; i < recRes.products.size()-1; i++) 
+        res[p2v[i]] = ((mpf_class) recRes.products[i] /recRes.counter);
+
     return res;
 }
 

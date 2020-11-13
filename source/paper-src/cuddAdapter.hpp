@@ -35,6 +35,7 @@ class cuddAdapter : public BDDAdapter {
     cuddAdapter();
     cuddAdapter(double cacheMultiplier);
     int                 getNumVars();
+    std::vector<int>    pos2var();
     DdNode*             getZero();
     DdNode*             getOne();
     cudd::Cudd            getCudd() { return mgr; };

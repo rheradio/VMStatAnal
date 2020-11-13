@@ -23,7 +23,12 @@ int cuddAdapter::MAXVAR = 100000;
 DdNode*          cuddAdapter::getBDD()  { return theBDD.getNode();         }
 DdNode*          cuddAdapter::getZero() { return mgr.bddZero().getNode();  }
 DdNode*          cuddAdapter::getOne()  { return mgr.bddOne().getNode();   }
-
+std::vector<int> cuddAdapter::pos2var() {
+    std::vector<int> res;
+    for(int x = 0; x < numVars; x++)
+        res.push_back(mgr.ReadInvPerm(x));
+    return res;
+}
 int    cuddAdapter::varAtPos(int pos) {
     return mgr.ReadInvPerm(pos);
 }
